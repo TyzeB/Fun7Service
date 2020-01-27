@@ -10,7 +10,7 @@ Values can either be `enabled` or `disabled`.
 
 ```json
 {
-	"multiplayer": "enabled",
+    "multiplayer": "enabled",
     "user-support": "enabled",
     "ads": "disabled"
 }
