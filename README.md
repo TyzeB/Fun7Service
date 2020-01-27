@@ -11,13 +11,13 @@ If running on a local development server:
 * Use Insomnia REST Client or Postman to see the JSON
 
 ```http
-https://fun7service.appspot.com?userid=200&cc=USA&timezone=LJ
+http://localhost:8080?userid=200&cc=USA&timezone=LJ
 ```
 
 If you'd like to try it out:
 
 ```http
-https://localhost:8080?userid=200&cc=USA&timezone=LJ
+https://fun7service.appspot.com?userid=200&cc=USA&timezone=LJ
 ```
 
 Note the query parameters:
