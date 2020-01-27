@@ -3,6 +3,19 @@ Fun7Service Code Challenge
 
 This is an App Engine Flexible Java application from the appengine-flexible-archetype archetype.
 
+This application provides information on whether services are enabled or not. There are three services available. Multiplayer, Ads and Customer Support.
+
+It should return a JSON like this:
+Values can either be `enabled` or `disabled`.
+
+```json
+{
+	"multiplayer": "enabled",
+    "user-support": "enabled",
+    "ads": "disabled"
+}
+```
+
 ## How to use
 ### Visit the link:
 
