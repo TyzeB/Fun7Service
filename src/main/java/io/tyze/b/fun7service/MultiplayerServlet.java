@@ -87,7 +87,7 @@ public class MultiplayerServlet extends HttpServlet {
 			return false;
 		}
 		if (Integer.parseInt(user.getProperty("access").toString()) >= 5
-				&& user.getProperty("countrycode").toString().equals("US")) {
+				&& user.getProperty("countrycode").toString().equals("USA")) {
 			return true;
 		}
 
