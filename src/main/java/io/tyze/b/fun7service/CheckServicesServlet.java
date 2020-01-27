@@ -37,18 +37,8 @@ public class CheckServicesServlet extends HttpServlet {
 		}
 
 		try {
-			customerservice = checkCustomerService(req).equals("{\"customerservice\":\"enabled\"}");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
+			customerservice = checkCustomerService(req).equals("{\"user-support\":\"enabled\"}");
 			ads = sendGetAds(cc).equals("{\"ads\": \"sure, why not!\"}");
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-
-		try {
 			multiplayer = checkMultiplayerService(req).equals("{\"multiplayer\":\"enabled\"}");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,7 +47,7 @@ public class CheckServicesServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		if (error.isEmpty()) {
 			String services = "{\"multiplayer\":" + (multiplayer ? "\"enabled\"," : "\"disabled\",");
-			services += "\"customerservice\":" + (customerservice ? "\"enabled\"," : "\"disabled\",");
+			services += "\"user-support\":" + (customerservice ? "\"enabled\"," : "\"disabled\",");
 			services += "\"ads\":" + (ads ? "\"enabled\"}" : "\"disabled\"}");
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("UTF-8");
@@ -107,7 +97,8 @@ public class CheckServicesServlet extends HttpServlet {
 
 	private String checkCustomerService(HttpServletRequest request) throws Exception {
 		OkHttpClient client = new OkHttpClient.Builder().build();
-		String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+		String url = request.getScheme() + "://" + request.getServerName()
+				+ (request.getServerName().equals("localhost") ? (":" + request.getServerPort()) : "")
 				+ "/support?userid=" + request.getParameter("userid") + "&cc=" + request.getParameter("cc")
 				+ "&timezone=" + request.getParameter("timezone");
 		Response response = doRequest(client, url);
@@ -117,7 +108,8 @@ public class CheckServicesServlet extends HttpServlet {
 
 	private String checkMultiplayerService(HttpServletRequest request) throws Exception {
 		OkHttpClient client = new OkHttpClient.Builder().build();
-		String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+		String url = request.getScheme() + "://" + request.getServerName()
+				+ (request.getServerName().equals("localhost") ? (":" + request.getServerPort()) : "")
 				+ "/multiplayer?userid=" + request.getParameter("userid") + "&cc=" + request.getParameter("cc")
 				+ "&timezone=" + request.getParameter("timezone");
 		Response response = doRequest(client, url);

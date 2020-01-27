@@ -36,7 +36,7 @@ public class SupportServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String service = "{\"customerservice\":" + (checkAvailability() ? "\"enabled\"}" : "\"disabled\"}");
+		String service = "{\"user-support\":" + (checkAvailability() ? "\"enabled\"}" : "\"disabled\"}");
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();

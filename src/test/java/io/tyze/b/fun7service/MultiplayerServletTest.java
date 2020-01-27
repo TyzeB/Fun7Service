@@ -27,10 +27,14 @@ public class MultiplayerServletTest {
 	private HttpServletRequest mockRequest;
 	@Mock
 	private HttpServletResponse mockResponse;
-    
+	StringWriter stringWriter;
+	PrintWriter responseWriter;
+	
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
+		stringWriter = new StringWriter();
+        responseWriter = new PrintWriter(stringWriter);
 		servletUnderTest = new MultiplayerServlet();
 	}
 
@@ -38,9 +42,6 @@ public class MultiplayerServletTest {
 	public void doGet_noUserIdSpecified() throws Exception {
 		when(mockRequest.getParameter("timezone")).thenReturn("LJ");
 		when(mockRequest.getParameter("cc")).thenReturn("USA");
-		
-		StringWriter stringWriter = new StringWriter();
-        PrintWriter responseWriter = new PrintWriter(stringWriter);
         when(mockResponse.getWriter()).thenReturn(responseWriter);
 		
 		servletUnderTest.doGet(mockRequest, mockResponse);		
@@ -53,9 +54,6 @@ public class MultiplayerServletTest {
 	public void doGet_noCountryCodeSpecified() throws IOException {
 		when(mockRequest.getParameter("userid")).thenReturn("200");
 		when(mockRequest.getParameter("timezone")).thenReturn("LJ");
-		
-		StringWriter stringWriter = new StringWriter();
-        PrintWriter responseWriter = new PrintWriter(stringWriter);
         when(mockResponse.getWriter()).thenReturn(responseWriter);
         
 		servletUnderTest.doGet(mockRequest, mockResponse);
@@ -68,9 +66,6 @@ public class MultiplayerServletTest {
 	public void doGet_noTimezoneSpecified() throws IOException {
 		when(mockRequest.getParameter("userid")).thenReturn("200");
 		when(mockRequest.getParameter("cc")).thenReturn("USA");
-		
-		StringWriter stringWriter = new StringWriter();
-        PrintWriter responseWriter = new PrintWriter(stringWriter);
         when(mockResponse.getWriter()).thenReturn(responseWriter);
 		
 		servletUnderTest.doGet(mockRequest, mockResponse);
