@@ -1,19 +1,29 @@
 Fun7Service Code Challenge
 ============================
 
-This is a App Engine Flexible Java application from the appengine-flexible-archetype archetype.
+This is an App Engine Flexible Java application from the appengine-flexible-archetype archetype.
 
 ## How to use
-Visit the link:
+### Visit the link:
 
-    https://fun7service.appspot.com/?userid=200&cc=USA&timezone=LJ
+If running on a local development server:
 
-Note the:
-	- userid
-	- cc
-	- timezone
-These parameters must be provided in order to use the service. If any of them is missing, the service will return:
-    
+* Use Insomnia REST Client or Postman to see the JSON
+
+    https://localhost:8080?userid=200&cc=USA&timezone=LJ
+
+If you'd like to try it out:
+
+    https://fun7service.appspot.com?userid=200&cc=USA&timezone=LJ
+
+Note the query parameters:
+
+ - userid
+- cc
+- timezone
+
+These parameters must be provided, or the service will return:
+
     400 Bad Request
 
 ## Requirements

@@ -3,9 +3,6 @@ package io.tyze.b.fun7service;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @RunWith(JUnit4.class)
-public class SupportServletUnitTest {
+public class SupportServletTest {
 	private SupportServlet servletUnderTest;
 	@Mock
 	private HttpServletRequest mockRequest;
@@ -46,20 +43,7 @@ public class SupportServletUnitTest {
         
 		servletUnderTest.doGet(mockRequest, mockResponse);
 		
-		assertTrue(isValidJSON(stringWriter.getBuffer().toString()));
+		assertTrue(Helper.isValidJSON(stringWriter.getBuffer().toString()));
 		responseWriter.flush();
-	}
-	
-	public boolean isValidJSON(String test) {
-		try {
-			new JSONObject(test);
-		} catch (JSONException ex) {
-			try {
-				new JSONArray(test);
-			} catch (JSONException ex1) {
-				return false;
-			}
-		}
-		return true;
 	}
 }
